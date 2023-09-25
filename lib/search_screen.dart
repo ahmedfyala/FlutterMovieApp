@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/core/style/my_theme.dart';
 import 'package:movies_app/search_widget.dart';
 
-import 'models/movie_model.dart';
+import 'models/movie_response.dart';
 
 class SearchScreen extends StatelessWidget {
-  List<Movie>? Movies;
-  Movie? Movies2;
+  MovieDitails? Movies2;
 
-  SearchScreen({this.Movies, this.Movies2});
+  SearchScreen({this.Movies2});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class SearchScreen extends StatelessWidget {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: MoviesSearch(Movies2: Movies2),
+                delegate: MoviesSearch(),
               );
             },
           ),

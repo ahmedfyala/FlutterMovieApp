@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../Veiw_movie_ditails_screen.dart';
-import '../models/SearchResponse.dart';
-import '../models/movie_model.dart';
+import '../models/movie_response.dart';
 import '../provider/my-provider.dart';
 
 class BookMarkWidget extends StatefulWidget {
-  final SearchResponse movie;
+  final MovieDitails movie;
 
   BookMarkWidget(this.movie, this.onBookmarkClicked);
 

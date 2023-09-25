@@ -6,13 +6,12 @@ import 'package:movies_app/network/remote/api_manager.dart';
 import 'componants/latest_movies_componant.dart';
 import 'componants/new_release_componant.dart';
 import 'componants/section_title.dart';
-import 'models/SearchResponse.dart';
-import 'models/movie_model.dart';
+import 'models/movie_response.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({this.Movies});
 
-  SearchResponse? Movies;
+  MovieDitails? Movies;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Color darkGray = Color(0xFF282A28);
-
   @override
   void initState() {
     super.initState();
@@ -114,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // ),
             Container(
               height: 340.0,
-              child: FutureBuilder<List<SearchResponse>>(
+              child: FutureBuilder<List<MovieDitails>>(
                 // Change the generic type
                 future: ApiManager.getPopularMovies(),
                 builder: (context, snapshot) {
@@ -124,8 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (snapshot.hasError) {
                     return Center(child: Text("Something went wrong"));
                   }
-                  List<SearchResponse>? movies =
-                      snapshot.data as List<SearchResponse>;
+                  List<MovieDitails>? movies =
+                      snapshot.data as List<MovieDitails>;
                   print("Snapshot data: ${snapshot.data}");
 
                   return CarouselSlider.builder(
@@ -145,40 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            // Container(
-            //   height: 340.0,
-            //   child: FutureBuilder<List<SearchResponse>>(
-            //     future: ApiManager.getPopularMovies(),
-            //     builder: (context, snapshot) {
-            //       if (snapshot.connectionState == ConnectionState.waiting) {
-            //         return Center(child: CircularProgressIndicator());
-            //       }
-            //       if (snapshot.hasError) {
-            //         return Center(child: Text("Something went wrong"));
-            //       }
-            //
-            //       List<SearchResponse>? movies = snapshot.data;
-            //
-            //       if (movies == null || movies.isEmpty) {
-            //         return Center(child: Text("No data available"));
-            //       }
-            //
-            //       return CarouselSlider.builder(
-            //         options: CarouselOptions(
-            //           height: 340.0,
-            //           autoPlay: true,
-            //         ),
-            //         itemCount: movies.length,
-            //         itemBuilder: (context, itemIndex, realIndex) {
-            //           return Padding(
-            //             padding: const EdgeInsets.all(8.0),
-            //             child: NowPlayingWidget(Movies: movies[itemIndex]),
-            //           );
-            //         },
-            //       );
-            //     },
-            //   ),
-            // ),
 
             SectionTitle('Top Rated'),
             Container(
@@ -193,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (snapshot.hasError) {
                     return Center(child: Text("Something went wrong"));
                   }
-                  var movies = snapshot.data as List<SearchResponse>;
+                  var movies = snapshot.data as List<MovieDitails>;
 
                   return ListView.builder(
                     shrinkWrap: true,
@@ -224,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (snapshot.hasError) {
                     return Center(child: Text("Something went wrong"));
                   }
-                  var movies = snapshot.data as List<SearchResponse>;
+                  var movies = snapshot.data as List<MovieDitails>;
 
                   return ListView.builder(
                     shrinkWrap: true,
@@ -257,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (snapshot.hasError) {
                     return Center(child: Text("Something went wrong"));
                   }
-                  var movies = snapshot.data as List<SearchResponse>;
+                  var movies = snapshot.data as List<MovieDitails>;
 
                   return ListView.builder(
                     shrinkWrap: true,

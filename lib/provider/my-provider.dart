@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
-import '../models/SearchResponse.dart';
-import '../models/movie_model.dart';
+import '../models/movie_response.dart';
 
 class MyProviderApp extends ChangeNotifier {
-  List<SearchResponse> watchlist = [];
+  List<MovieDitails> watchlist = [];
   bool isClicked = false;
 
-  bool isMovieInWatchlist(SearchResponse movie) {
+  bool isMovieInWatchlist(MovieDitails movie) {
     return watchlist.contains(movie);
   }
 
-  void addToWatchlist(SearchResponse movie) {
+  void addToWatchlist(MovieDitails movie) {
     watchlist.add(movie);
     notifyListeners();
   }
 
-  void removeFromWatchlist(SearchResponse movie) {
+  void removeFromWatchlist(MovieDitails movie) {
     watchlist.remove(movie);
     notifyListeners();
   }

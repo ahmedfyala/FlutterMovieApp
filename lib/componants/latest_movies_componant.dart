@@ -1,16 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/componants/bookMark_componant.dart';
 import 'package:movies_app/network/remote/api_constance.dart';
 import 'package:provider/provider.dart';
-
 import '../Veiw_movie_ditails_screen.dart';
-import '../models/SearchResponse.dart';
-import '../models/movie_model.dart';
-import '../network/remote/api_manager.dart';
+import '../models/movie_response.dart';
 import '../provider/my-provider.dart';
 
 class LatestMovies extends StatelessWidget {
-  SearchResponse? Movies;
+  MovieDitails? Movies;
 
   LatestMovies({this.Movies});
 
@@ -56,14 +54,30 @@ class LatestMovies extends StatelessWidget {
                           topRight: Radius.circular(8.0),
                           topLeft: Radius.circular(8.0),
                         ),
-                        child: Image.network(
-                          '${ApiConstance.base_image}${Movies?.poster_path ?? ""}',
+                        child: CachedNetworkImage(
+                          progressIndicatorBuilder: (context, url, progress) =>
+                              Center(
+                            child: CircularProgressIndicator(
+                              value: progress.progress,
+                            ),
+                          ),
+                          imageUrl:
+                              '${ApiConstance.base_image}${Movies!.poster_path ?? ""}',
+                          fit: BoxFit.cover,
+                          width: 110,
+                          height: 160,
+                          // placeholder: (context, url) =>
+                          // const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Image.network(
+                            'https://moviereelist.com/wp-content/uploads/2019/07/poster-placeholder.jpg',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       BookMarkWidget(Movies!, (p0) {
                         // Check if the movie is in the watchlist
                         final isInWatchlist =
-                            provider.isMovieInWatchlist(Movies!);
+                        provider.isMovieInWatchlist(Movies!);
 
                         if (isInWatchlist) {
                           // Remove the movie from the watchlist
@@ -88,7 +102,7 @@ class LatestMovies extends StatelessWidget {
                       SizedBox(
                         width: 5,
                       ),
-                      Text(Movies!.title ?? ""),
+                      Text(Movies!.vote_average.toString() ?? ""),
                     ],
                   ),
                 ),
@@ -109,7 +123,7 @@ class LatestMovies extends StatelessWidget {
                       Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            Movies!.title ?? "",
+                            Movies!.release_date ?? "",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                                 fontSize: 11, color: Color(0xFFB5B4B4)),
