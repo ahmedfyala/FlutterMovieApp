@@ -20,8 +20,8 @@ import 'models/movie_response.dart';
 //   return await Hive.openBox(boxname);
 //}
 void main() async {
-  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   await Hive.openBox<MovieDitails>('movie_box');
   Hive.registerAdapter(MovieDitailsAdapter());
   // movieDitails('boxname');

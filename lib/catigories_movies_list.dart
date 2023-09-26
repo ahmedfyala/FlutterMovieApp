@@ -55,7 +55,7 @@ class _CategoriesMovieListState extends State<CategoriesMovieList> {
                       child: GridView.builder(
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 0,
+                            crossAxisSpacing: 20,
                             mainAxisSpacing: 0,
                             crossAxisCount: 2,
                           ),
