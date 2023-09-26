@@ -12,8 +12,14 @@ class MyProviderApp extends ChangeNotifier {
     return watchlist.contains(movie);
   }
 
-  void addToWatchlist(MovieDitails movie) {
+  Future<void> addToWatchlist(MovieDitails movie) async {
+    // try {
+    //   var movieBox = Hive.box<MovieDitails>('movie_box');
+    //   await movieBox.add(movie);
+    // }on Exception catch(e){}
+
     watchlist.add(movie);
+
     notifyListeners();
   }
 

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/componants/now_playing_componant.dart';
 import 'package:movies_app/network/remote/api_manager.dart';
 
@@ -17,12 +18,21 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+late Future<List<MovieDitails>> pepular;
+late Future<List<MovieDitails>> topRated;
+late Future<List<MovieDitails>> upcoming;
+late Future<List<MovieDitails>> trending;
+
 class _HomeScreenState extends State<HomeScreen> {
-  Color darkGray = Color(0xFF282A28);
-  @override
   void initState() {
     super.initState();
+    pepular = ApiManager.getPopularMovies();
+    topRated = ApiManager.getTopRatedMovies();
+    upcoming = ApiManager.getUpcomingMovies();
+    trending = ApiManager.getTrendingMovies();
   }
+
+  Color darkGray = Color(0xFF282A28);
 
   @override
   Widget build(BuildContext context) {
@@ -32,89 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // Container(
-            //   height: 340,
-            //   child: Stack(
-            //     children: [
-            //       Container(
-            //           width: 412,
-            //           height: 217,
-            //           child: Image.asset('assets/images/Image.png')),
-            //       Positioned(
-            //         bottom: 40,
-            //         child: Container(
-            //             height: 199,
-            //             width: 129,
-            //             child: Wrap(
-            //               spacing: 8.0, // gap between adjacent chips
-            //               runSpacing: 4.0, // gap between lines
-            //               direction: Axis.vertical,
-            //               children: [
-            //                 Row(
-            //                   children: [
-            //                     Stack(
-            //                       children: [
-            //                         ClipRRect(
-            //                             borderRadius: BorderRadius.circular(13),
-            //                             child: Image.asset(
-            //                                 'assets/images/Image2.png')),
-            //                         Container(
-            //                           height: 40,
-            //                           child: Stack(
-            //                             alignment: Alignment.center,
-            //                             children: [
-            //                               Icon(
-            //                                 Icons.bookmark,
-            //                                 size: 40,
-            //                                 color: Color(0xFF514F4F),
-            //                               ),
-            //                               Icon(
-            //                                 Icons.add,
-            //                                 color: Colors.white,
-            //                               ),
-            //                             ],
-            //                           ),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                     Padding(
-            //                       padding: const EdgeInsets.all(8.0),
-            //                       child: Column(
-            //                         mainAxisAlignment: MainAxisAlignment.center,
-            //                         children: [
-            //                           SizedBox(
-            //                             height: 85,
-            //                           ),
-            //                           Padding(
-            //                             padding: const EdgeInsets.all(8.0),
-            //                             child: Text(
-            //                               'Dora and the lost city of gold',
-            //                               style: TextStyle(color: Colors.white),
-            //                             ),
-            //                           ),
-            //                           Padding(
-            //                             padding: const EdgeInsets.all(8.0),
-            //                             child: Text(
-            //                               'Dora and the lost city of gold',
-            //                               style: TextStyle(color: Colors.white),
-            //                             ),
-            //                           ),
-            //                         ],
-            //                       ),
-            //                     ),
-            //                   ],
-            //                 ),
-            //               ],
-            //             )),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
-              height: 340.0,
+              height: 300.0.h,
               child: FutureBuilder<List<MovieDitails>>(
                 // Change the generic type
-                future: ApiManager.getPopularMovies(),
+                future: pepular,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
@@ -128,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   return CarouselSlider.builder(
                     options: CarouselOptions(
-                      height: 340.0,
+                      height: 340.0.h,
                       autoPlay: true,
                     ),
                     itemCount: movies.length,
@@ -147,9 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
             SectionTitle('Top Rated'),
             Container(
               color: darkGray,
-              height: 170.0,
+              height: 140.0.h,
               child: FutureBuilder(
-                future: ApiManager.getTopRatedMovies(),
+                future: topRated,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
@@ -177,10 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
             SectionTitle('Upcoming Movies'),
             Container(
               color: darkGray,
-              height: 250.0,
-              width: 450,
+              height: 220.0.h,
+              width: 450.w,
               child: FutureBuilder(
-                future: ApiManager.getUpcomingMovies(),
+                future: upcoming,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
@@ -207,13 +139,13 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-            SectionTitle('getTrendingMovies'),
+            SectionTitle('Trending Movies'),
             Container(
               color: darkGray,
-              height: 250.0,
-              width: 450,
+              height: 220.0.h,
+              width: 450.w,
               child: FutureBuilder(
-                future: ApiManager.getTrendingMovies(),
+                future: trending,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());

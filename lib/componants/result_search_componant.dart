@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -35,8 +36,8 @@ class ResultSearchWidget extends StatelessWidget {
                 Stack(
                   children: [
                     Container(
-                        height: 91,
-                        width: 141,
+                        height: 75.h,
+                        width: 135.w,
                         child: ClipRRect(
                             borderRadius: BorderRadius.circular(18),
                             child: Center(
@@ -86,7 +87,7 @@ class ResultSearchWidget extends StatelessWidget {
                         movie?.title ?? "",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 18.sp,
                         ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -95,7 +96,7 @@ class ResultSearchWidget extends StatelessWidget {
                       Text(
                         movie?.release_date ?? "",
                         style: GoogleFonts.poppins(
-                            fontSize: 10, color: Colors.white),
+                            fontSize: 10.sp, color: Colors.white),
                       ),
                     ],
                   ),
@@ -115,7 +116,7 @@ class ResultSearchWidget extends StatelessWidget {
                       ),
                       Text(
                         movie!.vote_average.toString().substring(0, 3) ?? "",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(fontSize: 18.sp, color: Colors.white),
                       ),
                     ],
                   ),

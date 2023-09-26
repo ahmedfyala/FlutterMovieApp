@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/componants/bookMark_componant.dart';
 import 'componants/new_release_componant.dart';
@@ -63,7 +64,7 @@ class VeiwMovieDitails extends StatelessWidget {
                       movies.title ?? "",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     )),
@@ -79,7 +80,7 @@ class VeiwMovieDitails extends StatelessWidget {
                       movies.release_date ?? "",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 10,
+                        fontSize: 10.sp,
                       ),
                     )),
               ),
@@ -87,8 +88,8 @@ class VeiwMovieDitails extends StatelessWidget {
                 height: 22,
               ),
               Container(
-                width: 373,
-                height: 208,
+                width: 365.w,
+                height: 170.h,
                 child: Row(
                   children: [
                     Padding(
@@ -96,8 +97,8 @@ class VeiwMovieDitails extends StatelessWidget {
                       child: Stack(
                         children: [
                           Container(
-                            height: 199,
-                            width: 129,
+                            height: 190,
+                            width: 139,
                             child: CachedNetworkImage(
                               progressIndicatorBuilder:
                                   (context, url, progress) => Center(
@@ -108,8 +109,8 @@ class VeiwMovieDitails extends StatelessWidget {
                               imageUrl: ApiConstance.imageUrl(
                                   movies.poster_path ?? ""),
                               fit: BoxFit.fill,
-                              width: 110,
-                              height: 160,
+                              width: 110.w,
+                              height: 160.h,
                               // placeholder: (context, url) =>
                               // const CircularProgressIndicator(),
                               errorWidget: (context, url, error) =>
@@ -169,7 +170,7 @@ class VeiwMovieDitails extends StatelessWidget {
                                               .substring(0, 3) ??
                                           "",
                                       style: GoogleFonts.poppins(
-                                          fontSize: 18, color: Colors.white),
+                                          fontSize: 18.sp, color: Colors.white),
                                     ),
                                   ],
                                 )),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/componants/new_release_componant.dart';
 import 'package:movies_app/network/remote/api_constance.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class NowPlayingWidget extends StatelessWidget {
         ));
       },
       child: Container(
-        height: 340,
+        height: 340.h,
         child: Stack(
           children: [
             Container(
@@ -53,8 +54,8 @@ class NowPlayingWidget extends StatelessWidget {
             Positioned(
               bottom: 40,
               child: Container(
-                  height: 169,
-                  width: 119,
+                  height: 169.h,
+                  width: 119.w,
                   child: Wrap(
                     spacing: 8.0, // gap between adjacent chips
                     runSpacing: 4.0, // gap between lines
@@ -68,23 +69,23 @@ class NowPlayingWidget extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(13),
                                 child: NewRelease(Movies),
                               ),
-                              BookMarkWidget(
-                                Movies!,
-                                (p0) {
-                                  // Check if the movie is in the watchlist
-                                  final isInWatchlist =
-                                      provider.isMovieInWatchlist(Movies!);
-
-                                  if (isInWatchlist) {
-                                    // Remove the movie from the watchlist
-                                    provider.removeFromWatchlist(Movies!);
-                                  } else {
-                                    // Add the movie to the watchlist
-                                    provider.addToWatchlist(Movies!);
-                                  }
-                                },
-                                //isInWatchlist, // Pass whether it's in the watchlist
-                              ),
+                              // BookMarkWidget(
+                              //   Movies!,
+                              //   (p0) {
+                              //     // Check if the movie is in the watchlist
+                              //     final isInWatchlist =
+                              //         provider.isMovieInWatchlist(Movies!);
+                              //
+                              //     if (isInWatchlist) {
+                              //       // Remove the movie from the watchlist
+                              //       provider.removeFromWatchlist(Movies!);
+                              //     } else {
+                              //       // Add the movie to the watchlist
+                              //       provider.addToWatchlist(Movies!);
+                              //     }
+                              //   },
+                              //   //isInWatchlist, // Pass whether it's in the watchlist
+                              // ),
                             ],
                           ),
                           Padding(

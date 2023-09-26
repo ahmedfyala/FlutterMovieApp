@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/componants/bookMark_componant.dart';
 import 'package:movies_app/network/remote/api_constance.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class LatestMovies extends StatelessWidget {
         child: SingleChildScrollView(
           child: Container(
             // height: 170,
-            width: 110,
+            width: 110.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(11),
               color: Color(0XFF282A28),
@@ -64,8 +65,8 @@ class LatestMovies extends StatelessWidget {
                           imageUrl:
                               '${ApiConstance.base_image}${Movies!.poster_path ?? ""}',
                           fit: BoxFit.cover,
-                          width: 110,
-                          height: 160,
+                          width: 110.w,
+                          height: 140.h,
                           // placeholder: (context, url) =>
                           // const CircularProgressIndicator(),
                           errorWidget: (context, url, error) => Image.network(
@@ -97,7 +98,7 @@ class LatestMovies extends StatelessWidget {
                       Icon(
                         Icons.star,
                         color: Colors.yellow,
-                        size: 18,
+                        size: 19.sp,
                       ),
                       SizedBox(
                         width: 5,
@@ -113,7 +114,7 @@ class LatestMovies extends StatelessWidget {
                       child: Text(
                         Movies!.title ?? "",
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(fontSize: 14.sp),
                       )),
                 ),
                 Padding(
@@ -126,7 +127,7 @@ class LatestMovies extends StatelessWidget {
                             Movies!.release_date ?? "",
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: 11, color: Color(0xFFB5B4B4)),
+                                fontSize: 11.sp, color: Color(0xFFB5B4B4)),
                           )),
                       SizedBox(
                         width: 5,

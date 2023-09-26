@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/network/remote/api_constance.dart';
 import 'package:provider/provider.dart';
 
@@ -27,8 +28,8 @@ class NewRelease extends StatelessWidget {
         ));
       },
       child: Container(
-        width: 110,
-        height: 160,
+        width: 110.w,
+        height: 160.h,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(9)),
         child: Card(
           borderOnForeground: false,
@@ -49,8 +50,8 @@ class NewRelease extends StatelessWidget {
                   imageUrl:
                       '${ApiConstance.base_image}${Movies!.poster_path ?? ""}',
                   fit: BoxFit.cover,
-                  width: 110,
-                  height: 160,
+                  width: 110.w,
+                  height: 160.h,
                   // placeholder: (context, url) =>
                   // const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Image.network(
