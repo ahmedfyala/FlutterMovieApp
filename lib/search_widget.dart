@@ -1,18 +1,9 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 import '../../network/remote/api_manager.dart';
-import 'componants/new_release_componant.dart';
 import 'componants/result_search_componant.dart';
-import 'models/SearchResponse.dart';
-import 'models/movie_model.dart';
+import 'models/movie_response.dart';
 
 class MoviesSearch extends SearchDelegate {
-  List<Movie>? Movies;
-  Movie? Movies2;
-
-  MoviesSearch({this.Movies, this.Movies2});
-
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -40,7 +31,7 @@ class MoviesSearch extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<SearchResponse>>(
+    return FutureBuilder<List<MovieDitails>>(
       // Change the generic type
       future: ApiManager.fetchDataFromSearch(query),
       builder: (context, snapshot) {
@@ -50,7 +41,7 @@ class MoviesSearch extends SearchDelegate {
         if (snapshot.hasError) {
           return Center(child: Text("Something went wrong"));
         }
-        List<SearchResponse>? movies = snapshot.data as List<SearchResponse>;
+        List<MovieDitails>? movies = snapshot.data as List<MovieDitails>;
         print("Snapshot data: ${snapshot.data}");
 
         return ListView.builder(
@@ -59,7 +50,7 @@ class MoviesSearch extends SearchDelegate {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           itemCount: movies.length,
           itemBuilder: (context, index) {
-            return ResultSearchWidget(searchResponse: movies[index]);
+            return ResultSearchWidget(movie: movies[index]);
           },
         );
       },

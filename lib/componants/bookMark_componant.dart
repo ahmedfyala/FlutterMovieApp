@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
-import '../Veiw_movie_ditails_screen.dart';
-import '../models/SearchResponse.dart';
-import '../models/movie_model.dart';
+import '../models/movie_response.dart';
 import '../provider/my-provider.dart';
 
 class BookMarkWidget extends StatefulWidget {
-  final SearchResponse movie;
+  final MovieDitails movie;
 
   BookMarkWidget(this.movie, this.onBookmarkClicked);
 
@@ -36,13 +34,13 @@ class _BookMarkWidgetState extends State<BookMarkWidget> {
       },
       child: isClicked
           ? Container(
-              height: 40,
+        height: 40.h,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   Icon(
                     Icons.bookmark,
-                    size: 40,
+                    size: 40.sp,
                     color: Colors.yellow,
                   ),
                   Icon(
@@ -53,7 +51,7 @@ class _BookMarkWidgetState extends State<BookMarkWidget> {
               ),
             )
           : Container(
-              height: 40,
+        height: 30.h,
               child: Stack(
                 alignment: Alignment.center,
                 children: [

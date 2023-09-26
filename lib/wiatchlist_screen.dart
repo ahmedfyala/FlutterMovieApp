@@ -4,8 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'componants/now_playing_componant.dart';
 import 'componants/result_search_componant.dart';
-import 'models/SearchResponse.dart';
-import 'models/movie_model.dart';
+import 'models/movie_response.dart';
 
 class WatchlistScreen extends StatelessWidget {
   Color darkGray = Color(0xFF282A28);
@@ -30,8 +29,8 @@ class WatchlistScreen extends StatelessWidget {
               },
               itemCount: provider.watchlist.length,
               itemBuilder: (context, index) {
-                SearchResponse movie = provider.watchlist[index];
-                return ResultSearchWidget(searchResponse: movie);
+                MovieDitails movie = provider.watchlist[index];
+                return ResultSearchWidget(movie: movie);
               },
             ),
     );

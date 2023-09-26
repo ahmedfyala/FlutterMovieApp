@@ -5,7 +5,6 @@ import 'package:movies_app/network/remote/api_constance.dart';
 import '../../models/series.dart';
 import 'package:http/http.dart' as http;
 
-import 'api_manager.dart';
 
 class SApi {
   static const _trendingSeriesUrl =

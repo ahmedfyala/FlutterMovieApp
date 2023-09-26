@@ -1,8 +1,8 @@
 class CategoryNameModel {
-  String categoryName;
-  int categoryId;
+  String? categoryName;
+  int? categoryId;
 
-  CategoryNameModel({required this.categoryName, required this.categoryId});
+  CategoryNameModel({this.categoryName, this.categoryId});
 
   factory CategoryNameModel.fromJson(Map<String, dynamic> data) {
     return CategoryNameModel(
