@@ -83,14 +83,20 @@ class ResultSearchWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        movie?.title ?? "",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18.sp,
+                      Container(
+                        constraints: BoxConstraints(maxWidth: 120),
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: 110),
+                          child: Text(
+                            movie?.title ?? "",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.sp,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
                       ),
                       SizedBox(height: 8),
                       Text(

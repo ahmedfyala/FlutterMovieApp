@@ -98,11 +98,14 @@ class NowPlayingWidget extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    Movies?.title ?? "",
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(color: Colors.white),
+                                  child: Container(
+                                    constraints: BoxConstraints(maxWidth: 100),
+                                    child: Text(
+                                      Movies?.title ?? "",
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 ),
                                 Padding(

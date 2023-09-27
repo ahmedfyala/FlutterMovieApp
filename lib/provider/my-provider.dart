@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
-
 import '../models/movie_response.dart';
 
 class MyProviderApp extends ChangeNotifier {
@@ -13,10 +11,10 @@ class MyProviderApp extends ChangeNotifier {
   }
 
   Future<void> addToWatchlist(MovieDitails movie) async {
-    // try {
-    //   var movieBox = Hive.box<MovieDitails>('movie_box');
-    //   await movieBox.add(movie);
-    // }on Exception catch(e){}
+    try {
+      var movieBox = Hive.box<MovieDitails>('movie_box');
+      await movieBox.add(movie);
+    } on Exception catch (e) {}
 
     watchlist.add(movie);
 
@@ -27,9 +25,4 @@ class MyProviderApp extends ChangeNotifier {
     watchlist.remove(movie);
     notifyListeners();
   }
-// void getdatatoadd() {
-//   isClicked = true;
-//   Movie movies;
-//   notifyListeners();
-// }
 }

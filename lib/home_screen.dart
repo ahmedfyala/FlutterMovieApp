@@ -17,7 +17,6 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
 late Future<List<MovieDitails>> pepular;
 late Future<List<MovieDitails>> topRated;
 late Future<List<MovieDitails>> upcoming;
@@ -31,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
     upcoming = ApiManager.getUpcomingMovies();
     trending = ApiManager.getTrendingMovies();
   }
-
   Color darkGray = Color(0xFF282A28);
 
   @override
@@ -75,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-
             SectionTitle('Top Rated'),
             Container(
               color: darkGray,

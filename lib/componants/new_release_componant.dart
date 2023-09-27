@@ -52,8 +52,6 @@ class NewRelease extends StatelessWidget {
                   fit: BoxFit.cover,
                   width: 110.w,
                   height: 160.h,
-                  // placeholder: (context, url) =>
-                  // const CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Image.network(
                     'https://moviereelist.com/wp-content/uploads/2019/07/poster-placeholder.jpg',
                     fit: BoxFit.cover,
